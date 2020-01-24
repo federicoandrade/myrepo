@@ -1,0 +1,44 @@
+---
+title: "Chapter6"
+author: "Federico Andrade-Rivas"
+date: "January 23, 2020"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Pipe operator
+It has a short cut that is CTRL +Shift +M
+It takes what its to the left of the pipe and applies the functions to the right. You can see the pipe operator as a "gets" or "then". 
+
+```{r pipeoperator}
+library(tidyverse)
+library(gapminder)
+gapminder %>% head()
+
+
+
+```
+
+## Using select
+
+Back do dplyr
+
+```{r select}
+select(gapminder, year, lifeExp)
+```
+
+Same operation but written with pipe. Also, two ways of getting to the ssame result with typical R and pipes
+```{r pipelineselect}
+gapminder %>% 
+  select(year, lifeExp) %>% 
+  head(4)
+
+gapminder[gapminder$country == "Cambodia", c("country", "year")]
+
+
+gapminder %>% filter(country=="Cambodia") %>% select(year, lifeExp)
+
+```
